@@ -4,8 +4,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HelixFishSecurityUaaApplication {
+public class HelixFishSecurityUaaAuthServerApplication {
     public static void main(String[] args) {
-        SpringApplication.run(HelixFishSecurityUaaApplication.class,args);
+        SpringApplication.run(HelixFishSecurityUaaAuthServerApplication.class,args);
     }
 }
