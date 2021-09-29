@@ -56,6 +56,14 @@ spring.datasource.hikari.connection-test-query=SELECT 1
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-data-redis</artifactId>
     </dependency>
+  
+    <!-- 依赖commons-pool2连接池 -->
+    <dependency>
+        <groupId>org.apache.commons</groupId>
+        <artifactId>commons-pool2</artifactId>
+        <version>2.5.0</version>
+    </dependency>
+
     ```
 * 配置 Redis Server 信息
 1.Redis基本配置， 配置 Redis 主机IP， 端口，使用数据库，超时时间。
@@ -66,7 +74,7 @@ spring.datasource.hikari.connection-test-query=SELECT 1
         port: ${REDIS_PORT}
         timeout: ${REDIS_TIMEOUT}
     ```
-2.Letuce 配置
+2.Lettuce 配置
 ```properties
 lettuce:
  pool:
@@ -75,3 +83,20 @@ lettuce:
    max-wait: -1ms  #连接池最大等待阻塞时间
    min-idle: 0     #连接池中最小空闲数
 ```
+
+
+
+## 常见问题及解决办法
+1. Spring Boot 启动后，不停打印 Reconnected
+    * 问题
+        ```json
+        2021-09-29 15:46:45.910  INFO 28235 --- [ioEventLoop-4-4] i.l.c.p.ReconnectionHandler              : Reconnected to 127.0.0.1:6379
+        2021-09-29 15:46:46.008  INFO 28235 --- [ioEventLoop-4-5] i.l.c.p.ReconnectionHandler              : Reconnected to 127.0.0.1:6379
+        2021-09-29 15:46:46.108  INFO 28235 --- [ioEventLoop-4-6] i.l.c.p.ReconnectionHandler              : Reconnected to 127.0.0.1:6379
+        2021-09-29 15:46:46.205  INFO 28235 --- [ioEventLoop-4-7] i.l.c.p.ReconnectionHandler              : Reconnected to 127.0.0.1:6379
+        ```
+    * 原因
+    这是lettuce-core的实现里，lettuce与redis保持长连接，但是redis.conf默认配置timeout 300是当客户端闲置300秒后关闭连接，所以Lettuce在redis主动断开连接后会再次与redis建立连接
+    * 解决办法
+        * Redis Server 的 redis.conf 的 timeout 这里可以设置为0永不关闭
+        * 修改 Lettuce 日志级别

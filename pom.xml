@@ -11,6 +11,7 @@
     <properties>
         <java.version>1.8</java.version>
         <spring.cloud.version>Hoxton.SR12</spring.cloud.version>
+        <commons-pool.version>2.5.0</commons-pool.version>
     </properties>
     <!-- Spring Boot -->
     <parent>
@@ -21,11 +22,27 @@
 
 
     <dependencies>
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <!--Spring Boot SL4J + Log4j2-->
+        <dependency>
+            <!-- 排除 spring-boot-starter-logging -->
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-logging</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>*</groupId>
+                    <artifactId>*</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-log4j2</artifactId>
+        </dependency>
+
         <!-- spring oauth2 -->
         <dependency>
             <groupId>org.springframework.cloud</groupId>
@@ -49,12 +66,27 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-redis</artifactId>
         </dependency>
+        <!-- 依赖commons-pool2连接池 -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-pool2</artifactId>
+            <version>${commons-pool.version}</version>
+        </dependency>
+
 
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+            <version>1.18.0</version>
+        </dependency>
+
     </dependencies>
 
     <dependencyManagement>

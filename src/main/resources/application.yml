@@ -16,11 +16,13 @@ spring:
   redis:
     host: 127.0.0.1
     database: 0
-    port: 6479
+    port: 6379
     timeout: 1000
     lettuce:
       pool:
         max-active: 10
         max-idle: 8
-        max-wait: -1ms
+        max-wait: 100ms
         min-idle: 0
+logging:
+  config: classpath:logback-spring.xml
