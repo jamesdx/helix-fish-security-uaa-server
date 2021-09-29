@@ -2,7 +2,7 @@ server:
   port: 8081
 spring:
   datasource:
-    url: jdbc:mysql://127.0.0.1:3306/uaa
+    url: jdbc:mysql://127.0.0.1:3306/helix_fish_uaa?useUnicode=yes&characterEncoding=UTF-8
     username: root
     password: Win2008@
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -13,3 +13,14 @@ spring:
       max-lifetime: 540000
       connection-timeout: 60000
       connection-test-query: SELECT 1
+  redis:
+    host: 127.0.0.1
+    database: 0
+    port: 6479
+    timeout: 1000
+    lettuce:
+      pool:
+        max-active: 10
+        max-idle: 8
+        max-wait: -1ms
+        min-idle: 0

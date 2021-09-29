@@ -48,3 +48,30 @@ spring.datasource.hikari.connection-test-query=SELECT 1
 * 添加 Flyway 
 * 初始化数据库
 ## 如何配置 Spring Boot Data Redis
+在 Spring Boot 2.x 版本中，SpringBoot默认集成Lettuce。
+* 添加 Spring Boot Data Starter
+    ```xml
+    <!--Redis-->
+    <dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-data-redis</artifactId>
+    </dependency>
+    ```
+* 配置 Redis Server 信息
+1.Redis基本配置， 配置 Redis 主机IP， 端口，使用数据库，超时时间。
+    ```properties
+      redis:
+        host: ${YOUR_REDIS_SERVER_HOST}
+        database: ${REDIS_DATABASE}
+        port: ${REDIS_PORT}
+        timeout: ${REDIS_TIMEOUT}
+    ```
+2.Letuce 配置
+```properties
+lettuce:
+ pool:
+   max-active: 10  #连接池最大连接数  
+   max-idle: 8     #连接池中最大空闲连接数
+   max-wait: -1ms  #连接池最大等待阻塞时间
+   min-idle: 0     #连接池中最小空闲数
+```
