@@ -84,8 +84,6 @@ lettuce:
    min-idle: 0     #连接池中最小空闲数
 ```
 
-
-
 ## 常见问题及解决办法
 1. Spring Boot 启动后，不停打印 Reconnected
     * 问题

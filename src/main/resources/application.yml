@@ -24,5 +24,16 @@ spring:
         max-idle: 8
         max-wait: 100ms
         min-idle: 0
+  jpa:
+    database: mysql
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    hibernate:
+      ddl-auto: update
+    show-sql: true #Hibernate操作时显示真实的SQL, 缺省：false
+    properties:
+      hibernate:
+        show_sql: true #日志记录执行的SQL
+        formate_sql: true #日志记录执行的SQL
 logging:
   config: classpath:logback-spring.xml
+

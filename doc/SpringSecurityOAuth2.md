@@ -1,4 +1,6 @@
 #Spring Security OAuth2.0 文档
+## OAuth 2.0
+
 ## 如何使用 Spring Security OAuth2.0
 * 添加 Spring Security OAuth2.0 依赖。
 在 Spring Boot 和 Spring Cloud 配置的基础上添加 Spring Cloud OAuth2.0 Starter 即可
