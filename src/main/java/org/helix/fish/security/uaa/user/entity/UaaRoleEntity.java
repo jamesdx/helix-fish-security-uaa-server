@@ -11,19 +11,20 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name="uaa_roles")
-public class UaaRolesEntity extends BasicEntity implements Serializable {
+public class UaaRoleEntity extends BasicEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "role_id")
     private Long roleId;
 
+    @Column(name = "role_name")
     private String roleName;
 
     @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
-    private Set<UaaUsersEntity> users;
+    private Set<UaaUserEntity> users;
 
-    @ManyToMany(mappedBy = "roles" ,fetch = FetchType.EAGER)
-    private Set<UaaAuthoritiesEntity> authorities;
+    @ManyToMany(mappedBy = "roles" ,fetch = FetchType.LAZY)
+    private Set<UaaAuthorityEntity> authorities;
 
 
 }

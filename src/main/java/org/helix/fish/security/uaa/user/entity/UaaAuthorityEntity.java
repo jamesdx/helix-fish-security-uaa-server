@@ -11,15 +11,18 @@ import java.util.Set;
 @Setter
 @Entity
 @Table(name = "uaa_authorities")
-public class UaaAuthoritiesEntity extends BasicEntity implements Serializable {
+public class UaaAuthorityEntity extends BasicEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "authority_id")
     private Long authorityId;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = UaaRolesEntity.class, cascade = CascadeType.PERSIST)
+    @Column(name = "authority_name")
+    private String authorityName;
+
+    @ManyToMany(fetch = FetchType.LAZY, targetEntity = UaaRoleEntity.class)
     @JoinTable(name = "uaa_roles_authorities"
             , joinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authority_id")
             , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private Set<UaaRolesEntity> roles;
+    private Set<UaaRoleEntity> roles;
 }

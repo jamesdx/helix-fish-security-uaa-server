@@ -1,12 +1,12 @@
 package org.helix.fish.security.uaa.user.service;
 
 
-import org.helix.fish.security.uaa.user.entity.UaaUsersEntity;
+import org.helix.fish.security.uaa.user.entity.UaaUserEntity;
 
 public interface UaaUserService {
-    UaaUsersEntity getUserAuthorizationByUserNameAndPassword(String userName,String Password);
+    UaaUserEntity getUserAuthorizationByUserNameAndPassword(String userName, String Password);
 
     void removeUserByUserName(String Username);
 
-    UaaUsersEntity saveUser(UaaUsersEntity uaaUsersEntity);
+    UaaUserEntity saveUser(UaaUserEntity uaaUserEntity);
 }

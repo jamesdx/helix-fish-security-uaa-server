@@ -1,4 +1,13 @@
 #Spring Boot Data JPA 开发文档
+## 如何使用 JPA
+### 如何使用 JPA 实现 多对多关系
+### 如何使用 JPA 实现一对多
+https://www.cnblogs.com/ealenxie/p/9800818.html
+
+### N+1 或者 N+2 问题
+### 多对多及联保存
+
+
 ## JPA 基础
 ### JPA 对象映射关系
 JPA 对象映射关系主要有 5 中，一对多，多对一，多对多 和 方向的组合，具体如下  
@@ -71,7 +80,10 @@ mappedBy是OneToOne、OneToMany和ManyToMany这三种关联关系的属性。
 ## JPA Audit  - JPA 审计
 1. 开启 JPA Audit 审计配置
 2.
-
+## 如何使用 JPA Repository
+### 常用方法
+1. `save` 方法
+2. `saveAndFlush` 方法
 ## 如何构建一个 JPA 实例对象父类
 1. 使用 @MappedSuperclass 注解
 2. 使用 @EntityListeners 
@@ -90,6 +102,14 @@ mappedBy是OneToOne、OneToMany和ManyToMany这三种关联关系的属性。
 4. JpaSpecificationExecutor< T>
 封装了查询一条数据、条件查询、分页查询、排序查询、计数查询。
 5. N+1 解决 N+1 问题
+* 问题描述
+当我们使用JPA提供给我们的find方法时，如果查询出来的对象关联着另外10个对象，
+那么JPA将会发送1+10次查询（这个对象本身要查询一次，然后每个关联对象再查询一次）
+* 解决方案
+1. `NameEntityGraph`
+https://zhuanlan.zhihu.com/p/139998091W
+2. `FetchType.EAGE + FetchMode.JOIN`
+
 @EntityGraph：解决懒加载的查询N+1问题，提升查询效率。
 6.ManyToMany：一对多
 注意：防止无限递归，可以使用toString来解决  

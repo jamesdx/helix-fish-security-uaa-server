@@ -11,7 +11,9 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "uaa_users")
-public class UaaUsersEntity extends BasicEntity implements Serializable {
+@NamedEntityGraph(name = "uaaUser.graph"
+        , attributeNodes = {@NamedAttributeNode("roles")})
+public class UaaUserEntity extends BasicEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,10 +26,10 @@ public class UaaUsersEntity extends BasicEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(targetEntity = UaaRolesEntity.class, cascade = CascadeType.PERSIST, fetch = FetchType.EAGER)
+    @ManyToMany(targetEntity = UaaRoleEntity.class,fetch = FetchType.EAGER)
     @JoinTable(name = "uaa_users_roles"
             , joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private Set<UaaRolesEntity> roles;
+    private Set<UaaRoleEntity> roles;
 
 }

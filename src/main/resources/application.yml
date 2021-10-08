@@ -28,7 +28,7 @@ spring:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true #Hibernate操作时显示真实的SQL, 缺省：false
     properties:
       hibernate:
