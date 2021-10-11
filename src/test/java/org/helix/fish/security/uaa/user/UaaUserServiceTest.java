@@ -15,6 +15,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 
 import javax.transaction.Transactional;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @RunWith(SpringRunner.class)
@@ -79,7 +80,9 @@ public class UaaUserServiceTest {
 
     @Test
     public void verify_findUserByUserAndPassword() {
-        uaaUserService.getUserAuthorizationByUserNameAndPassword("Allen001", "password").getRoles().size();
+        UaaUserEntity uaaUserEntity = uaaUserService.getUserAuthorizationByUserNameAndPassword("Allen001", "password");
+        uaaUserEntity.getRoles().size();
+
     }
 
     //    @After

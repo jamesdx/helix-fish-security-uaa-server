@@ -3,10 +3,8 @@ package org.helix.fish.security.uaa.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
-import java.io.Serializable;
 import java.util.Set;
 
 @Entity
@@ -19,7 +17,7 @@ import java.util.Set;
                 @NamedAttributeNode("roles")
         }
 )
-public class UaaUserEntity extends BasicEntity implements Serializable {
+public class UaaUserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -32,7 +30,7 @@ public class UaaUserEntity extends BasicEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @JsonManagedReference
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "uaa_users_roles"
             , joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id")
