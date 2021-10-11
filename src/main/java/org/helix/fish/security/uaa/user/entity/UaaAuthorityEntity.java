@@ -5,7 +5,6 @@ import lombok.Setter;
 
 import javax.persistence.*;
 import java.io.Serializable;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -20,9 +19,9 @@ public class UaaAuthorityEntity extends BasicEntity implements Serializable {
     @Column(name = "authority_name")
     private String authorityName;
 
-    @ManyToMany(fetch = FetchType.LAZY, targetEntity = UaaRoleEntity.class)
-    @JoinTable(name = "uaa_roles_authorities"
-            , joinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authority_id")
-            , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
-    private Set<UaaRoleEntity> roles;
+//    @ManyToMany(fetch = FetchType.EAGER, targetEntity = UaaRoleEntity.class)
+//    @JoinTable(name = "uaa_roles_authorities"
+//            , joinColumns = @JoinColumn(name = "authority_id", referencedColumnName = "authority_id")
+//            , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
+//    private Set<UaaRoleEntity> roles;
 }

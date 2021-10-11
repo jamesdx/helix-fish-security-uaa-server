@@ -84,7 +84,8 @@ mappedBy是OneToOne、OneToMany和ManyToMany这三种关联关系的属性。
 ### 常用方法
 1. `save` 方法
 2. `saveAndFlush` 方法
-## 如何构建一个 JPA 实例对象父类
+## 如何构建一个 JPA 实例对象父类 - 
+https://cloud.tencent.com/developer/article/1799671?from=article.detail.1700718
 1. 使用 @MappedSuperclass 注解
 2. 使用 @EntityListeners 
 3. JAP Audit
@@ -212,4 +213,17 @@ spring.jpa.show-sql = true
 </loggers>
 ```
 ## Spring Boot Data JPA 实现 RBAC
+
+
+
+## Back Up
+* Many To Many with Entity Graph
+https://stackoverflow.com/questions/38639879/spring-data-jpa-entity-graphs-are-not-working-with-spring-boot
+
+* JPA Best Practise
+https://thorben-janssen.com/best-practices-for-many-to-many-associations-with-hibernate-and-jpa/
+
+* JAP Sample
+https://www.infoworld.com/article/3387643/java-persistence-with-jpa-and-hibernate-part-2-many-to-many-relationships.html?page=2
+https://www.baeldung.com/jpa-entity-graph
 

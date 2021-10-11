@@ -1,7 +1,9 @@
 package org.helix.fish.security.uaa.user.entity;
 
+
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -11,8 +13,12 @@ import java.util.Set;
 @Getter
 @Setter
 @Table(name = "uaa_users")
-@NamedEntityGraph(name = "uaaUser.graph"
-        , attributeNodes = {@NamedAttributeNode("roles")})
+@NamedEntityGraph(
+        name = "user-with-roles",
+        attributeNodes = {
+                @NamedAttributeNode("roles")
+        }
+)
 public class UaaUserEntity extends BasicEntity implements Serializable {
 
     @Id
@@ -26,7 +32,8 @@ public class UaaUserEntity extends BasicEntity implements Serializable {
     @Column(name = "password")
     private String password;
 
-    @ManyToMany(targetEntity = UaaRoleEntity.class,fetch = FetchType.EAGER)
+    @JsonManagedReference
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "uaa_users_roles"
             , joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))

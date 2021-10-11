@@ -61,7 +61,6 @@ public class UaaUserServiceTest {
         UaaRoleEntity roleEntityB = new UaaRoleEntity();
         roleEntity.setRoleName(testRoleName003);
 
-        roleEntity.setAuthorities(authorities);
         roleEntity.setUsers(users);
 
         uaaRoleService.saveRole(roleEntity);
@@ -74,13 +73,13 @@ public class UaaUserServiceTest {
 
         uaaUserEntity.setRoles(roles);
         uaaUserService.saveUser(uaaUserEntity);
-        authorityEntity.setRoles(roles);
+//        authorityEntity.setRoles(roles);
         uaaAuthorityService.saveAuthority(authorityEntity);
     }
 
     @Test
     public void verify_findUserByUserAndPassword() {
-        UaaUserEntity user = uaaUserService.getUserAuthorizationByUserNameAndPassword("Allen001", "password");
+        uaaUserService.getUserAuthorizationByUserNameAndPassword("Allen001", "password").getRoles().size();
     }
 
     //    @After

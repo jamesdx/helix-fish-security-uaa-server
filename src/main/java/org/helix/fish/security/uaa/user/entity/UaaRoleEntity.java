@@ -2,6 +2,7 @@ package org.helix.fish.security.uaa.user.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.codehaus.jackson.annotate.JsonManagedReference;
 
 import javax.persistence.*;
 import java.io.Serializable;
@@ -20,11 +21,12 @@ public class UaaRoleEntity extends BasicEntity implements Serializable {
     @Column(name = "role_name")
     private String roleName;
 
-    @ManyToMany(mappedBy = "roles", fetch = FetchType.LAZY)
+    @JsonManagedReference
+    @ManyToMany(mappedBy = "roles", fetch = FetchType.EAGER)
     private Set<UaaUserEntity> users;
-
-    @ManyToMany(mappedBy = "roles" ,fetch = FetchType.LAZY)
-    private Set<UaaAuthorityEntity> authorities;
+//
+//    @ManyToMany(mappedBy = "roles",fetch = FetchType.EAGER)
+//    private Set<UaaAuthorityEntity> authorities;
 
 
 }
