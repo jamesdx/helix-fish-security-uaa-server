@@ -10,12 +10,15 @@ import java.util.Set;
 @Entity
 @Getter
 @Setter
-@Table(name = "uaa_users")
+@Table(name = "uaa_user")
 @NamedEntityGraph(
-        name = "user-with-roles",
-        attributeNodes = {
-                @NamedAttributeNode("roles")
+        name = "user-with-role"
+        , attributeNodes = {
+                @NamedAttributeNode("roles"),
+                @NamedAttributeNode(value="roles", subgraph = "authorityEntities")
         }
+        , subgraphs = {@NamedSubgraph(name = "authorityEntities" ,attributeNodes = {@NamedAttributeNode("authorityEntities")})
+        ,@NamedSubgraph(name = "roles", attributeNodes = @NamedAttributeNode(value = "role",subgraph = "authorityEntities"))}
 )
 public class UaaUserEntity {
 
@@ -32,7 +35,7 @@ public class UaaUserEntity {
 
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "uaa_users_roles"
+    @JoinTable(name = "uaa_user_role"
             , joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "user_id")
             , inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "role_id"))
     private Set<UaaRoleEntity> roles;

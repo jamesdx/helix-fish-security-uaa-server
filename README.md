@@ -1,7 +1,21 @@
 # Helix Fish Security Authentication and Authorization Project
+构建一个数量级是一个亿用户的，可裁剪UAA商用系统。
+## 核心功能
 ## UAA 系统架构
 ### UAA 架构图
 ### UAA 核心组件
+### 技术栈
+
+* Docker
+* K8S
+* JMeter
+* Jenkins
+* MySql
+* Redis
+* Spring Cloud
+* Spring Boot
+* JPA
+
 
 #### Spring Security OAuth2.0
 ## UAA 系统核心功能
@@ -50,3 +64,10 @@ docker logs ${REDIS_CONTAINER_ID}
  *–appendonly yes：redis启动后数据持久化
  
 ## UAA 系统DevSecuOps
+
+
+
+## 测试报告
+### UT
+### Sonar
+### 性能测试
