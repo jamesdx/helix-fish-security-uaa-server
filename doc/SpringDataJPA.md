@@ -1,6 +1,14 @@
 #Spring Boot Data JPA 开发文档
 ## 如何使用 JPA
-### 如何使用 JPA 实现 多对多关系
+   
+ * `JPA最佳实践`
+
+
+
+
+
+
+
 ### 如何使用 JPA 实现一对多
 https://www.cnblogs.com/ealenxie/p/9800818.html
 
@@ -30,6 +38,7 @@ JPA 对象映射关系主要有 5 中，一对多，多对一，多对多 和 �
        * cascade：配置级联操作。
        * fetch：配置是否采用延迟加载。
        * targetEntity：配置目标的实体类。映射多对多的时候不用写。
+       * mapped: 
 * `@JoinTable`
     * 作用：针对中间表的配置
     * 属性：
@@ -51,6 +60,7 @@ JPA 对象映射关系主要有 5 中，一对多，多对一，多对多 和 �
 基于代码复用和模型分离的思想，在项目开发中使用JPA的@MappedSuperclass注解将实体类的多个属性分别封装到不同的非实体类中.
 * `@EntityListeners`
 @EntityListeners可以被用来监听模型事件（数据创建，修改，删除甚至自定义事件），一般是注册`AuditingEntityListener`这个事件。
+* @NamedEntityGraph
 
 
 

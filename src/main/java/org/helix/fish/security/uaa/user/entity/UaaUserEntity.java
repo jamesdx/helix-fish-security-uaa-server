@@ -7,9 +7,10 @@ import lombok.Setter;
 import javax.persistence.*;
 import java.util.Set;
 
-@Entity
+
 @Getter
 @Setter
+@Entity
 @Table(name = "uaa_user")
 @NamedEntityGraph(
         name = "user-with-role"
