@@ -33,6 +33,7 @@ public class UaaUserServiceTest {
     private String testRoleName002 = "testRoleName002";
     private String testRoleName003 = "testRoleName003";
     private String authorityName001 = "authorityName001";
+    private String authorityName002 = "authorityName002";
 
     @Before
     @Transactional
@@ -48,25 +49,34 @@ public class UaaUserServiceTest {
 
         UaaAuthorityEntity authorityEntity = new UaaAuthorityEntity();
         authorityEntity.setAuthorityName(authorityName001);
-
+        UaaAuthorityEntity authorityEntityA = new UaaAuthorityEntity();
+        authorityEntityA.setAuthorityName(authorityName002);
 
         Set authorities = new HashSet<UaaAuthorityEntity>();
         authorities.add(uaaAuthorityService);
 
         UaaRoleEntity roleEntity = new UaaRoleEntity();
         roleEntity.setRoleName(testRoleName001);
-
+        roleEntity.getAuthorityEntities().add(authorityEntity);
         UaaRoleEntity roleEntityA = new UaaRoleEntity();
         roleEntityA.setRoleName(testRoleName002);
+        roleEntityA.getAuthorityEntities().add(authorityEntity);
+        roleEntityA.getAuthorityEntities().add(authorityEntityA);
 
         UaaRoleEntity roleEntityB = new UaaRoleEntity();
-        roleEntity.setRoleName(testRoleName003);
+        roleEntityB.getAuthorityEntities().add(authorityEntity);
+        roleEntityB.getAuthorityEntities().add(authorityEntityA);
+        roleEntityB.setRoleName(testRoleName003);
 
         roleEntity.setUsers(users);
+
+        uaaAuthorityService.saveAuthority(authorityEntity);
+        uaaAuthorityService.saveAuthority(authorityEntityA);
 
         uaaRoleService.saveRole(roleEntity);
         uaaRoleService.saveRole(roleEntityA);
         uaaRoleService.saveRole(roleEntityB);
+
         Set roles = new HashSet<UaaRoleEntity>();
         roles.add(roleEntity);
         roles.add(roleEntityA);
