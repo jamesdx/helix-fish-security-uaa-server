@@ -1,19 +1,20 @@
 #---------------------------------
-# 操作系统初始化
+# FCM 集群安装
 ## 操作系统时钟同步
 ## 操作系统安全增强 - HARDEN
 #---------------------------------
-
+# ansible-playbook -i config/hosts -e @config/config.yml playbooks/kcm_cluster_install_preparation.yml
 # 系统加固 - 所有的服务器
 #备选方案有：github.com/dev-sec/ansible-collection-hardening
 - hosts:
-    - kube_master_cluster
-    - kube_worker_cluster
-    - etcd_cluster
-    - ex_lb_cluster
-    - chrony_server
-    roles:
-      - {role: server-os-harden, when: "OS_HARDEN|bool"}
+  - kube_master_cluster
+  - kube_worker_cluster
+  - etcd_cluster
+  - ex_lb_cluster
+  - ntp_chrony_server
+  roles:
+#    - {role: server-os-harden,when: "SERVER_OS_HARDEN|bool"}
+    - {role: ntp-chrony, when: "groups['ntp_chrony_server']|length > 0"}
 
 #---------------------------------
 #配置信息初始化：CA证书，K8S 基本配置信息初始化：kubeconfig, kube-proxy.kubeconfig etc.
