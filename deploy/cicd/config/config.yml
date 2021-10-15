@@ -1,3 +1,20 @@
 # Ansible Inventory 配置文件，用于配置 Ansible 常用的变量
 # 是否采用系统加固
-SERVER_OS_HARDEN=true
+SERVER_OS_HARDEN: true
+
+
+#---------------------
+# Cluster Install Preparation
+#----------------------
+## 配置离线/在线安装系统多需要软件包 (offline|online)
+INSTALL_SOURCE: "online"
+
+
+
+# 设置时间源服务器【重要：集群内机器时间必须同步】
+ntp_servers:
+  - "ntp1.aliyun.com"
+  - "time1.cloud.tencent.com"
+  - "0.cn.pool.ntp.org"
+# 设置允许内部时间同步的网络段，比如"10.0.0.0/8"，默认全部允许
+local_network: "0.0.0.0/0"

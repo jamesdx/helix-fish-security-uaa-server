@@ -23,5 +23,12 @@
 #192.168.1.7 LB_ROLE=master EX_APISERVER_VIP=192.168.1.250 EX_APISERVER_PORT=8443
 
 # [optional] ntp server for the cluster
-[chrony_server]
+[ntp_chrony_server]
 127.0.0.1
+
+[all:vars]
+# Deploy Directory (kcm workspace)
+base_dir="/etc/cicd"
+
+# Directory for a specific cluster
+cluster_dir="{{ base_dir }}/clusters/k8s-cluster-001"
