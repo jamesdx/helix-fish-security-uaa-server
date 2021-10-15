@@ -1,0 +1,27 @@
+# Ansible Inventor 配置文件，用于配置集群主机清单
+# 'etcd' cluster should have odd member(s) (1,3,5,...)
+[etcd_cluster]
+127.0.0.1
+
+
+# master node(s)
+[kube_master_cluster]
+127.0.0.1
+
+# work node(s)
+[kube_worker_cluster]
+127.0.0.1
+
+# [optional] harbor server, a private docker registry
+# 'NEW_INSTALL': 'true' to install a harbor server; 'false' to integrate with existed one
+[harbor_server]
+#192.168.1.8 NEW_INSTALL=false
+
+# [optional] loadbalance for accessing k8s from outside
+[ex_lb_cluster]
+#192.168.1.6 LB_ROLE=backup EX_APISERVER_VIP=192.168.1.250 EX_APISERVER_PORT=8443
+#192.168.1.7 LB_ROLE=master EX_APISERVER_VIP=192.168.1.250 EX_APISERVER_PORT=8443
+
+# [optional] ntp server for the cluster
+[chrony_server]
+127.0.0.1
