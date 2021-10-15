@@ -1,0 +1,8 @@
+- hosts:
+    - kube_master_cluster
+    - kube_worker_cluster
+    - etcd_cluster
+    - ex_lb_cluster
+    - ntp_chrony_server
+  roles:
+    - { role: chrony, when: "groups['ntp_chrony_server']|length > 0" }
