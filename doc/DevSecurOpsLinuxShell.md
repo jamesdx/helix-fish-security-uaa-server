@@ -22,6 +22,10 @@ bin为binary的简写主要放置一些 系统的必备执行档例如:cat、cp�
 如果这是用户和管理员必备的二进制文件，就会放在/bin。如果这是系统管理员必备，但是一般用户根本不会用到的二进制文件，就会放在 /sbin。
 相对而言。如果不是用户必备的二进制文件，多半会放在/usr/bin；如果不是系统管理员必备的工具，多半会放在/usr/sbin。
 ## 常用命令
+* `awk` 
+```shell script
+docker images | grep kcm | awk '{print $3}'
+```
 
 * `ln`   
 它的功能是为某一个文件在另外一个位置建立一个同不的链接，这个命令最常用的参数是-s,具体用法是：ln -s 源文件 目标文件
@@ -43,7 +47,8 @@ bin为binary的简写主要放置一些 系统的必备执行档例如:cat、cp�
     ```
 
 
-* `${}`  
+* `${}`
+  
     在bash中，$( )与` `（反引号）都是用来作命令替换的。 他可以把两个命令的结果拼接在一起。命令替换与变量替换差不多，都是用来重组命令行的，先完成引号里的命令行，然后将其结果替换出来，再重组成新的命令行。
     ```shell script
     # grep 找到结果，然后  cut 去拆分
@@ -118,6 +123,11 @@ bin为binary的简写主要放置一些 系统的必备执行档例如:cat、cp�
         $ apk add --no-cache mysql-client
         $ apk add docker --update-cache --repository http://mirrors.ustc.edu.cn/alpine/v3.4/main/ --allow-untrusted
         ```
+      
+* `$() 将一个命令返回值给一个变量`
+```shell script
+var = $(docker images | grep kcm | awk '{print $3}')
+```
 ## Resources
 
 
