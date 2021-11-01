@@ -1,3 +1,5 @@
+#KCM 介绍
+KCM K8S Cluster Management 用于自动化、定制化、离线构建 K8S 高可用弹性集群。
 #KCM 操作手册
 * 以 root 用户登陆
 * 
