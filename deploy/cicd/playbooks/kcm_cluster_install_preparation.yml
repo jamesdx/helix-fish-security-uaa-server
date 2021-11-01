@@ -14,8 +14,11 @@
   - ntp_chrony_server
   roles:
 #    - {role: server-os-harden,when: "SERVER_OS_HARDEN|bool"}
-    - {role: ntp-chrony, when: "groups['ntp_chrony_server']|length > 0"}
+#    - {role: ntp-chrony, when: "groups['ntp_chrony_server']|length > 0"}
 
 #---------------------------------
 #配置信息初始化：CA证书，K8S 基本配置信息初始化：kubeconfig, kube-proxy.kubeconfig etc.
 #---------------------------------
+- hosts: localhost
+  roles:
+    - cluster-media-generation

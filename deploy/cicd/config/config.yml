@@ -18,3 +18,16 @@ ntp_servers:
   - "0.cn.pool.ntp.org"
 # 设置允许内部时间同步的网络段，比如"10.0.0.0/8"，默认全部允许
 local_network: "0.0.0.0/0"
+
+
+############################
+# role:cluster-media-generation
+############################
+# default: ca will expire in 1 years
+# default: certs issued by the ca will expire in harf of one year
+CA_EXPIRY: "8760h"
+CERT_EXPIRY: "4380h"
+
+# kubeconfig 配置参数
+CLUSTER_NAME: "cluster1"
+CONTEXT_NAME: "context-{{ CLUSTER_NAME }}"
